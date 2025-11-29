@@ -1,0 +1,105 @@
+/* Imports: Playfair Display for headings + Inter for UI text */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Core palette (hex, explicit) - LIGHT THEME ONLY */
+:root{
+  --bg: #ffffff;
+  --fg: #1a202c;          /* dark gray-blue text */
+  --muted: #718096;       /* muted gray text */
+  --primary: #14b8a6;     /* teal accent */
+  --primary-fg: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --radius: 0.75rem;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Dark mode (optional) - disabled, using light theme */
+.dark {
+  --bg: #ffffff;
+  --fg: #1a202c;
+  --muted: #718096;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --primary: #14b8a6;
+}
+
+/* Base element rules to guarantee contrast */
+@layer base {
+  html, body, #root {
+    background-color: var(--bg) !important;
+    color: var(--fg) !important;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,h2,h3,h4 {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--fg) !important;
+    margin: 0 0 0.6rem 0;
+    letter-spacing: -0.5px;
+  }
+
+  h1 { font-size: 3.25rem; line-height: 1.02; font-weight: 700; }
+  h2 { font-size: 2rem; font-weight: 700; }
+  p, a, li, span { color: var(--muted) !important; font-family: Inter, system-ui; }
+
+  /* Nav links */
+  .nav-link {
+    color: var(--primary) !important;
+    font-weight: 600;
+  }
+  .nav-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Card defaults (used by your components) */
+  .card {
+    background-color: var(--card-bg) !important;
+    color: var(--fg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--card-shadow) !important;
+    padding: 1.5rem;
+  }
+
+  /* Strong CTA / button */
+  .btn-primary, .btn-primary * {
+    background-color: var(--primary) !important;
+    color: var(--primary-fg) !important;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem 0.9rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(20,184,166,0.12) !important;
+  }
+
+  /* Hero tweaks */
+  .hero-title { color: var(--fg) !important; font-family: "Playfair Display"; font-weight:700; }
+  .hero-sub { color: var(--muted) !important; max-width: 720px; margin: 0 auto; }
+  
+  /* Form inputs */
+  input, textarea, select {
+    background-color: #fff !important;
+    color: var(--fg) !important;
+    border: 1px solid var(--card-border) !important;
+  }
+  
+  input::placeholder {
+    color: var(--muted) !important;
+  }
+}
+
+/* Fallback utility classes used across project (force important to override missing generated utilities) */
+@layer utilities {
+  .bg-background { background-color: var(--bg) !important; }
+  .text-foreground { color: var(--fg) !important; }
+  .text-muted { color: var(--muted) !important; }
+  .bg-card { background-color: var(--card-bg) !important; }
+  .border-card { border-color: var(--card-border) !important; }
+  .btn-primary { background-color: var(--primary) !important; color: var(--primary-fg) !important; }
+  .hero-title { color: var(--fg) !important; font-family: "Playfair Display", serif !important; }
+  .card-title { color: var(--fg) !important; font-weight:700 !important; }
+}
